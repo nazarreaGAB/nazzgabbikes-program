@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NazzGab Bikes | Bike Shop</title>
+  <meta name="description" content="NazzGab Bikes: road, mountain, city and electric bikes plus gear and parts. Checkout is calculated by a GnuCOBOL backend.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='16' fill='none' stroke='%231f5c46' stroke-width='4'/%3E%3Ccircle cx='20' cy='20' r='4' fill='%23e8590c'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="./">
+        <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
+          <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="3"/>
+          <circle cx="20" cy="20" r="3" fill="currentColor"/>
+          <g stroke="currentColor" stroke-width="1.6">
+            <line x1="20" y1="3" x2="20" y2="37"/><line x1="3" y1="20" x2="37" y2="20"/>
+            <line x1="8" y1="8" x2="32" y2="32"/><line x1="32" y1="8" x2="8" y2="32"/>
+          </g>
+        </svg>
+        <span>NazzGab <em>Bikes</em></span>
+      </a>
+      <div class="top-right">
+        <span id="pill" class="pill">Checking backend…</span>
+        <a class="cartlink" href="#cart">Cart <span id="cartCount" class="count" hidden>0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div id="banner" class="banner" hidden>
+    <strong>Browser-only preview.</strong>
+    You can browse and fill a basket, but checkout is disabled because prices are calculated by the COBOL backend.
+    Open this project in GitHub Codespaces and run <code>npm start</code> for the real shop.
+  </div>
+
+  <main class="wrap layout">
+    <section class="shop" aria-label="Products">
+      <div class="hero">
+        <div>
+          <h1>Ride better. Pay straight.</h1>
+          <p>Pick your bike, gear or parts, set the quantity, and watch your total update live. Every peso is calculated by our COBOL checkout.</p>
+        </div>
+        <ul class="perks">
+          <li><strong>Bulk savings</strong> 3+ of one item: 5% off · 5+: 10% off</li>
+          <li><strong>Free shipping</strong> on orders of ₱5,000 and up</li>
+          <li><strong>Promo codes</strong> RIDE10 · WELCOME500</li>
+        </ul>
+      </div>
+
+      <div class="toolbar">
+        <div class="chips" id="chips" role="tablist" aria-label="Categories"></div>
+        <input id="search" type="search" placeholder="Search bikes and gear…" aria-label="Search products">
+        <select id="sort" class="sortsel" aria-label="Sort products">
+          <option value="featured">Sort: Featured</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+        <button id="reset" class="btn ghost" type="button">Reset stock</button>
+      </div>
+
+      <div id="status" class="notice" hidden></div>
+      <div id="grid" class="grid"></div>
+    </section>
+
+    <aside id="cart" class="cart" aria-label="Your order">
+      <h2>Your order</h2>
+      <div id="cartLines" class="cart-lines"></div>
+
+      <div id="promoRow" class="promo" hidden>
+        <label for="promo">Promo code</label>
+        <input id="promo" type="text" maxlength="12" placeholder="Enter a code" autocomplete="off">
+        <div class="hints">
+          <button type="button" class="hint" data-code="RIDE10">RIDE10</button>
+          <button type="button" class="hint" data-code="WELCOME500">WELCOME500</button>
+        </div>
+      </div>
+
+      <div id="cartError" class="notice error" hidden></div>
+      <dl id="summary" class="summary" hidden></dl>
+
+      <button id="checkout" class="btn primary wide" disabled>Place order</button>
+      <p class="fine">Demo only: no payments, accounts or personal data. Stock resets when the server restarts.</p>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    NazzGab Bikes · classroom demo · Browser UI → Node.js API → GnuCOBOL checkout
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <dialog id="receipt">
+    <div class="receipt-body" id="receiptBody"></div>
+    <form method="dialog"><button class="btn primary wide">Keep shopping</button></form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
